@@ -44,39 +44,28 @@ $logado = $_SESSION['email'];
     ?>
     <form>
         <div id="formulario">
-            <table class="table table-dark" id="tabox">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">RECEITA</th>
-                        <th scope="col">DESPESA</th>
-                        <th scope="col">COMENTARIO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
-                        <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
-                        <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input><button type="button" class="btn btn-secondary" id="add_novo"> + </button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
-                        <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
-                        <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
-                        <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
-                        <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-secondary" id="rmv_novo"> - </button>
-            <button type="button" class="btn btn-secondary" id="add_novo"> + </button>
-
+            <div id="form_group">
+                <table class="table table-dark" id="tabox">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">RECEITA</th>
+                            <th scope="col">DESPESA</th>
+                            <th scope="col">COMENTARIO</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
+                            <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
+                            <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>
+                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button><button type="button" class="btn btn-secondary" id="rmv_novo"> - </button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         </br></br>
         <div class="vstack gap-2 col-md-5 mx-auto">
@@ -85,7 +74,12 @@ $logado = $_SESSION['email'];
         </div>
     </form>
     <script>
-
+        $("#add_novo").click(function() {
+            $("#tabox").append('<tr><th scope="row">3</th><td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td><td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td><td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button><button type="button" class="btn btn-secondary" id="rmv_novo"> - </button> </td></tr>');
+        })
+        $("formulario").on("click", "p", function() {
+            $(this).after("<p>Another paragraph! " + (++count) + "</p>");
+        });
     </script>
 </body>
 
