@@ -25,6 +25,22 @@ $logado = $_SESSION['email'];
             background-size: cover;
             text-align: center;
         }
+
+        .table-bg {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .rmv_novo {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 36.95px;
+            height: 38px;
+            vertical-align: while;
+            border: 1px solid #6c757d;
+            cursor: pointer;
+            outline: none;
+        }
     </style>
 
 
@@ -43,9 +59,9 @@ $logado = $_SESSION['email'];
     echo "<h1>Bem-vindo (a): <u>$logado</u></h1>";
     ?>
     <form>
-        <div id="formulario">
-            <div id="form_group">
-                <table class="table table-dark" id="tabox">
+        <div id="formulario" class="m-5">
+            <div class="form_group">
+                <table class="table table-bg" id="tabox">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -57,11 +73,11 @@ $logado = $_SESSION['email'];
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">#</th>
                             <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
                             <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
                             <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>
-                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button><button type="button" class="btn btn-secondary" id="rmv_novo"> - </button> </td>
+                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -70,15 +86,17 @@ $logado = $_SESSION['email'];
         </br></br>
         <div class="vstack gap-2 col-md-5 mx-auto">
             <button type="button" class="btn btn-secondary">Salva Alterações</button>
-            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
         </div>
     </form>
     <script>
+        var cont = 1;
         $("#add_novo").click(function() {
-            $("#tabox").append('<tr><th scope="row">3</th><td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td><td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td><td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button><button type="button" class="btn btn-secondary" id="rmv_novo"> - </button> </td></tr>');
+            $("#formulario").append('<div class="form_group" id="campo' + cont + '"><table class="table table-bg" id="tabox"><tbody><tr><th scope="row">#</th><td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td><td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td><td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td><td><button " id="' + cont + '" class="rmv_novo"> - </button></td></tr></tbody></table></div>');
         })
-        $("formulario").on("click", "p", function() {
-            $(this).after("<p>Another paragraph! " + (++count) + "</p>");
+        $("form").on("click", ".rmv_novo", function() {
+            var button_id = $(this).attr("id");
+            $('#campo' + button_id + '').remove();
         });
     </script>
 </body>
