@@ -36,7 +36,7 @@ $logado = $_SESSION['email'];
             color: white;
             width: 36.95px;
             height: 38px;
-            vertical-align: while;
+            vertical-align: middle;
             border: 1px solid #6c757d;
             cursor: pointer;
             outline: none;
@@ -58,7 +58,7 @@ $logado = $_SESSION['email'];
     <?php
     echo "<h1>Bem-vindo (a): <u>$logado</u></h1>";
     ?>
-    <form>
+    <form action="sistema.php" method="POST">
         <div id="formulario" class="m-5">
             <div class="form_group">
                 <table class="table table-bg" id="tabox">
@@ -85,7 +85,7 @@ $logado = $_SESSION['email'];
         </div>
         </br></br>
         <div class="vstack gap-2 col-md-5 mx-auto">
-            <button type="button" class="btn btn-secondary">Salva Alterações</button>
+            <button type="submit" class="btn btn-secondary" name="submit">Salva Alterações</button>
             <button type="button" class="btn btn-secondary">Cancel</button>
         </div>
     </form>
@@ -94,7 +94,7 @@ $logado = $_SESSION['email'];
         $("#add_novo").click(function() {
             $("#formulario").append('<div class="form_group" id="campo' + cont + '"><table class="table table-bg" id="tabox"><tbody><tr><th scope="row">#</th><td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td><td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td><td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td><td><button " id="' + cont + '" class="rmv_novo"> - </button></td></tr></tbody></table></div>');
         })
-        $("form").on("click", ".rmv_novo", function() {
+        $("body").on("click", ".rmv_novo", function() {
             var button_id = $(this).attr("id");
             $('#campo' + button_id + '').remove();
         });
