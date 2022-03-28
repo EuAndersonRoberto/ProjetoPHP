@@ -7,6 +7,17 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true
     header('Location: login.php');
 }
 $logado = $_SESSION['email'];
+
+if (isset($_POST['submit'])) {
+    include_once('config.php');
+
+    $receita = $_POST['receita'];
+    $despesa = $_POST['despesa'];
+    $comentario = $_POST['comentario'];
+
+    $result = mysqli_query($conexao, "INSERT INTO controller(receita,despesa,comentario) VALUES ('$receita','$despesa','$comentario')");
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -74,10 +85,10 @@ $logado = $_SESSION['email'];
                     <tbody>
                         <tr>
                             <th scope="row">#</th>
-                            <td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td>
-                            <td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td>
-                            <td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td>
-                            <td><button type="button" class="btn btn-secondary" id="add_novo"> + </button></td>
+                            <td><input type="text" class="entradas" name="receita" placeholder="Receita"></input></td>
+                            <td><input type="text" class="entradas" name="despesa" placeholder="Despesa"></input></td>
+                            <td><input type="text" class="entradas" name="comentario" placeholder="informe aqui!" required></input></td>
+                            <td><input type="submit" name="submit" id="submit"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,14 +101,7 @@ $logado = $_SESSION['email'];
         </div>
     </form>
     <script>
-        var cont = 1;
-        $("#add_novo").click(function() {
-            $("#formulario").append('<div class="form_group" id="campo' + cont + '"><table class="table table-bg" id="tabox"><tbody><tr><th scope="row">#</th><td><input type="text" class="entradas" name="receita[]" placeholder="Receita"></input></td><td><input type="text" class="entradas" name="despesa[]" placeholder="Despesa"></input></td><td><input type="text" class="entradas" name="comentario[]" placeholder="informe aqui!"></input></td><td><button " id="' + cont + '" class="rmv_novo"> - </button></td></tr></tbody></table></div>');
-        })
-        $("body").on("click", ".rmv_novo", function() {
-            var button_id = $(this).attr("id");
-            $('#campo' + button_id + '').remove();
-        });
+        
     </script>
 </body>
 
